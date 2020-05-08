@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Crud with php and mysql</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div id="root">
+        <div class="container">
+            <h1 class="fleft">List of users</h1>
+            <button class="fright addNew" @click="showingAddModal = true;">Add new</button>
+            <div class="clear">Clear</div>
+
+            <table class="list">
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                <tr>
+                    <td>l</td>
+                    <td>uuu</td>
+                    <td>eee</td>
+                    <td>mmm</td>
+                    <td><button>Edit</button></td>
+                    <td><button>Delete</button></td>
+                </tr>
+            </table>
+        </div>
+
+
+        <div class="modal" id="addModal" v-if="showingAddModal">
+            <div class="modalContainer">
+                <div class="modalHeading">
+                    <p class="fleft">Add New User</p>
+                    <button class="fright close"></button>
+                </div>
+                <div class="modalContent">Modal Content</div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+</body>
+</html>
