@@ -27,8 +27,8 @@
                     <td>uuu</td>
                     <td>eee</td>
                     <td>mmm</td>
-                    <td><button>Edit</button></td>
-                    <td><button>Delete</button></td>
+                    <td><button @click="showingEditModal = true;">Edit</button></td>
+                    <td><button @click="showingDeleteModal = true;">Delete</button></td>
                 </tr>
             </table>
         </div>
@@ -38,9 +38,92 @@
             <div class="modalContainer">
                 <div class="modalHeading">
                     <p class="fleft">Add New User</p>
-                    <button class="fright close"></button>
+                    <button class="fright close" @click="showingAddModal = false;">x</button>
+                    <div class="clear"></div>
                 </div>
-                <div class="modalContent">Modal Content</div>
+                <div class="modalContent">
+                    <table class="form">
+                        <tr>
+                            <th>Username</th>
+                            <th> : </th>
+                            <th><input type="text" name="username"></th>
+                        </tr>
+
+                        <tr>
+                            <th>Email</th>
+                            <th> : </th>
+                            <th><input type="text" name="email"></th>
+                        </tr>
+
+                        <tr>
+                            <th>Mobile</th>
+                            <th> : </th>
+                            <th><input type="text" name="mobile"></th>
+                        </tr>
+
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th><button @click="showingAddModal = false;">save</button></th>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal" id="editModal" v-if="showingEditModal">
+            <div class="modalContainer">
+                <div class="modalHeading">
+                    <p class="fleft">Edit This User</p>
+                    <button class="fright close" @click="showingEditModal = false;">x</button>
+                    <div class="clear"></div>
+                </div>
+                <div class="modalContent">
+                    <table class="form">
+                        <tr>
+                            <th>Username</th>
+                            <th> : </th>
+                            <th><input type="text" name="username"></th>
+                        </tr>
+
+                        <tr>
+                            <th>Email</th>
+                            <th> : </th>
+                            <th><input type="text" name="email"></th>
+                        </tr>
+
+                        <tr>
+                            <th>Mobile</th>
+                            <th> : </th>
+                            <th><input type="text" name="mobile"></th>
+                        </tr>
+
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th><button @click="showingEditModal = false;">update</button></th>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="deleteModal" v-if="showingDeleteModal">
+            <div class="modalContainer">
+                <div class="modalHeading">
+                    <p class="fleft">Edit This User</p>
+                    <button class="fright close" @click="showingDeleteModal = false;">x</button>
+                    <div class="clear"></div>
+                </div>
+                <div class="modalContent">
+                    <p>You are going to delete.......</p>
+                    <br><br><br><br><br><br>
+                    <button @click="showingDeleteModal = false;">Yes</button>
+                    <button @click="showingDeleteModal = false;">No</button>
+                </div>
             </div>
         </div>
 

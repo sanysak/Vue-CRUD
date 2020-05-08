@@ -75,3 +75,14 @@ button{
     min-height: 333px;
     padding: 44px;
 }
+
+.close{
+    background: #D73131;
+    padding: 3px 9px;
+    border: none;
+    color: #ffffff;
+}
+
+table.form input, table.form td{
+    padding: 6px;
+}
