@@ -11,8 +11,14 @@
         <div class="container">
             <h1 class="fleft">List of users</h1>
             <button class="fright addNew" @click="showingAddModal = true;">Add new</button>
-            <div class="clear">Clear</div>
-
+            <div class="clear"></div>
+            <hr>
+            <p class="errorMessage"v-if="errorMessage">
+                {{errorMessage}}
+            </p>
+            <p class="sucessMessage"v-if="sucessMessage">
+                {{sucessMessage}}
+            </p>
             <table class="list">
                 <tr>
                     <th>ID</th>
@@ -22,13 +28,13 @@
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
-                <tr>
-                    <td>l</td>
-                    <td>uuu</td>
-                    <td>eee</td>
-                    <td>mmm</td>
-                    <td><button @click="showingEditModal = true;">Edit</button></td>
-                    <td><button @click="showingDeleteModal = true;">Delete</button></td>
+                <tr v-for = "user in users">
+                    <td>{{user.id}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.mobile}}</td>
+                    <td><button @click="showingEditModal = true; selectUser(user)">Edit</button></td>
+                    <td><button @click="showingDeleteModal = true; selectUser(user)">Delete</button></td>
                 </tr>
             </table>
         </div>
@@ -46,25 +52,25 @@
                         <tr>
                             <th>Username</th>
                             <th> : </th>
-                            <th><input type="text" name="username"></th>
+                            <td><input type="text" name="username" v-model="newUser.username"></td>
                         </tr>
 
                         <tr>
                             <th>Email</th>
                             <th> : </th>
-                            <th><input type="text" name="email"></th>
+                            <td><input type="text" name="email" v-model="newUser.email"></td>
                         </tr>
 
                         <tr>
                             <th>Mobile</th>
                             <th> : </th>
-                            <th><input type="text" name="mobile"></th>
+                            <td><input type="text" name="mobile" v-model="newUser.mobile"></td>
                         </tr>
 
                         <tr>
                             <th></th>
                             <th></th>
-                            <th><button @click="showingAddModal = false;">save</button></th>
+                            <th><button @click="showingAddModal = false; saveUser();">save</button></th>
                         </tr>
 
                     </table>
@@ -85,25 +91,25 @@
                         <tr>
                             <th>Username</th>
                             <th> : </th>
-                            <th><input type="text" name="username"></th>
+                            <th><input type="text" name="username" v-model="clickedUser.username"></th>
                         </tr>
 
                         <tr>
                             <th>Email</th>
                             <th> : </th>
-                            <th><input type="text" name="email"></th>
+                            <th><input type="text" name="email" v-model="clickedUser.email"></th>
                         </tr>
 
                         <tr>
                             <th>Mobile</th>
                             <th> : </th>
-                            <th><input type="text" name="mobile"></th>
+                            <th><input type="text" name="mobile" v-model="clickedUser.mobile"></th>
                         </tr>
 
                         <tr>
                             <th></th>
                             <th></th>
-                            <th><button @click="showingEditModal = false;">update</button></th>
+                            <th><button @click="showingEditModal = false; updateUser()">update</button></th>
                         </tr>
 
                     </table>
@@ -114,14 +120,14 @@
         <div class="modal" id="deleteModal" v-if="showingDeleteModal">
             <div class="modalContainer">
                 <div class="modalHeading">
-                    <p class="fleft">Edit This User</p>
+                    <p class="fleft">Are you sure?</p>
                     <button class="fright close" @click="showingDeleteModal = false;">x</button>
                     <div class="clear"></div>
                 </div>
                 <div class="modalContent">
-                    <p>You are going to delete.......</p>
+                    <p>You are going to delete '{{clickedUser.username}}'</p>
                     <br><br><br><br><br><br>
-                    <button @click="showingDeleteModal = false;">Yes</button>
+                    <button @click="showingDeleteModal = false; deleteUser()">Yes</button>
                     <button @click="showingDeleteModal = false;">No</button>
                 </div>
             </div>
@@ -133,5 +139,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script type="text/javascript" src="app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
 </body>
 </html>
